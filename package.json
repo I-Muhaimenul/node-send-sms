@@ -1,0 +1,33 @@
+{
+  "name": "send-sms",
+  "version": "1.0.0",
+  "description": "Send SMS from node app.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/I-Muhaimenul/node-send-sms.git"
+  },
+  "keywords": [
+    "SMS",
+    "nexmo",
+    "node"
+  ],
+  "author": "Muhaimenul Islam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/I-Muhaimenul/node-send-sms/issues"
+  },
+  "homepage": "https://github.com/I-Muhaimenul/node-send-sms#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
+    "nexmo": "^2.3.2",
+    "nodemon": "^1.18.3",
+    "socket.io": "^2.1.1"
+  }
+}
