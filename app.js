@@ -39,11 +39,41 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    res.send(req.body)
-    console.log(req.body)
+    // res.send(req.body)
+    // console.log(req.body)
+    const number = req.body.number
+    const text = req.body.text
+
+    nexmo.message.sendSms(
+        'VARTUAL_NUMBER', number, text, { type: 'unicode'},
+        (err, responseData) => {
+            if(err){
+                console.log(err)
+            } else{
+                console.dir(responseData)
+                //get data from response
+                const data = {
+                    id: responseData.messages[0]['message-id'],
+                    number: responseData.messages[0]['to']
+                }
+
+                // emit to the client main.js
+                io.emit('smsStatus', data)
+            }
+        }
+    )
 })
 
 const port = process.env.PORT || 3000
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log('Server started at port '+port)
+})
+
+// Connext to socket.io
+const io = socketio(server)
+io.on('connection', (socket) => {
+    console.log('Socket connected')
+    io.on('disconnect', () => {
+        console.log('Disconnected')
+    })
 })
